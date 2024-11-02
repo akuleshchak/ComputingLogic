@@ -1,0 +1,39 @@
+// A pseudocode program that prompts the user for a refrigerator model name and the interior height, width, and depth in inches
+// And prints the fridge name and its capacity
+
+// Plan: 1. Declare all the variables
+// Plan: 2. Input: we're going to get a refrigerator model name and the interior height, width, and depth in inches. A user will input them.
+// Plan: 3. Process: Calculate the refrigerator capacity in cubic feet by multiplying the height, width, and depth to get cubic inches and dividing by 1728 (the number of cubic inches in a cubic foot). Use named constants where appropriate for your calculation.
+// Plan: 4. Output: Finally, we will print the refrigerator module name and capacity in cubic feet.
+
+
+START
+
+// Declaring all the variables
+DECLARE fridgeName, height, width, depth, capacity
+DECLARE CONSTANT cubicInchesPerCubicFoot = 1728
+
+
+// Input: Collect fridge info
+PRINT "Please enter the fridge model name: "
+INPUT fridgeName
+
+PRINT "Please enter the interior height in inches:"
+INPUT height
+
+PRINT "Please enter the interior width in inches:"
+INPUT width
+
+PRINT "Please enter the interior depth in inches:"
+INPUT depth
+
+
+// Process: calculating the fridge capacity
+capacity = height * width * depth / cubicInchesPerCubicFoot
+
+
+// Output: printing the fridge name and the capacity in cubic feet
+PRINT "The fridge model name is " + fridgeName + ", and the capacity in cubic feet is: " + capacity
+
+
+STOP

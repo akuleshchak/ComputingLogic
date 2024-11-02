@@ -1,0 +1,36 @@
+// A Pseudocode program to calculate and print the overdrawn fee and the new balance
+
+// Plan: 1. Declare all the variables
+// Plan: 2. Input: we're going to get the account balance and number of times the account was overdrawn. A user will input them.
+// Plan: 3. Process: calculate the fee and the new balance
+// Plan: 4. Output: printing the fee and the new account balance
+
+
+START
+
+// Setting up variables
+DECLARE newAccountBalance, overDrawnFee, accountBalance, timesOverdrawn
+
+// Input: Collecting account information
+PRINT "Please enter your account balance:"
+INPUT accountBalance
+
+PRINT "Please enter the number of times your account was overdrawn:"
+INPUT numberOfOverdraws
+
+
+// Process: Calculate the fee and new balance
+IF accountBalance < 0 THEN
+	overDrawnFee = (1 / 100) * accountBalance - (5 * numberOfOverdraws)
+ELSE
+	overDrawnFee = 0 // No fee if the account isn't overdrawn
+
+newAccountBalance = accountBalance - overDrawnFee
+
+
+// Output: the results
+PRINT "The fee is: " + overDrawnFee
+PRINT "The new account balance is: " + newAccountBalance
+PRINT "Thanks for using this program"
+
+STOP
