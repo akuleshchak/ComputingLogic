@@ -1,0 +1,30 @@
+Question: You have been tasked with reviewing and updating this program. What steps would you take to identify any issues in the code?
+Your Response: I will thoroughly review each line, indention, will check if the variables are correctly spelled throughout the code. I also am going to verify the accuracy of calculationsand solutions. On doing that, I will correct all the mistakes that I have found.
+
+Question: What actions could the developer have taken to minimize the number of errors?
+Your Response: The developer could simply pay more attention to coding this program.
+
+
+// Corrected code:
+
+start
+   Declarations
+      num firstTest
+      num secondTest
+      num average
+      num PASSING = 60
+   output "Enter first score or 0 to quit: "
+   input firstTest
+   while firstTest <> 0
+      output "Enter second score: "
+      input secondTest
+      average = (firstTest + secondTest) / 2
+      output "Average is: " + average
+      if average >= PASSING THEN
+         output "Pass"
+      else
+         output "Fail"
+      endif
+      output "Enter first score or 0 to quit "
+   endwhile
+stop
