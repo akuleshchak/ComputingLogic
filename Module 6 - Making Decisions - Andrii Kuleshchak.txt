@@ -1,0 +1,242 @@
+// Scenario 1: collect info and display it all:
+START
+
+DECLARE monthlyFee = 5, 100to300Fee = 0.03, after300Fee = 0.02, taxRate = 0.14
+DECLARE areaCode, phoneNumber, sentMsgs
+DECLARE preTax, totalBill
+
+WHILE (TRUE) // this makes endless loop until the sentinel value of -1 is typed.
+	PRINT "INPUT your area code (3 digits) or type -1 to exit: "
+	INPUT areaCode
+	IF areaCode == -1
+		printInfo()
+		BREAK; // exiting the endless while loop after printing collected info.
+	ENDIF
+
+	PRINT "INPUT your phone number (7 digits) or type -1 to exit: "
+	INPUT phoneNumber
+	IF phoneNumber == -1
+		printInfo()
+		BREAK;
+	ENDIF
+
+	PRINT "INPUT your total number of text messages sent or type -1 to exit: "
+	INPUT sentMsgs
+	IF sentMsgs == -1
+		printInfo()
+		BREAK;
+	ENDIF
+ENDWHILE
+
+
+printInfo() {
+	PRINT "Your area code: " + areaCode
+	PRINT "Your phone number: " + phoneNumber
+	PRINT "Your total number of text messages sent: " + sentMsgs
+
+	IF sentMsgs > 300 THEN
+		preTax = (sentMsgs - 300) * after300Fee + 200 * 100to300Fee + monthlyFee
+
+	ELSE IF sentMsgs > 100 AND sentMsgs <= 300 THEN
+		preTax = (sentMsgs - 100) * 100to300Fee + monthlyFee
+
+	ELSE
+		preTax = monthlyFee
+	ENDIF
+
+	totalBill = preTax + (preTax * taxRate)
+	PRINT "Your pre tax amount: $" + preTax
+	PRINT "Your total bill: $" + totalBill
+}
+
+END
+
+
+
+
+
+
+// Scenario 2: Collects text message data until a specified sentinel value (-1) is entered. Details will only be displayed for customers who have sent over 100 text messages.
+START
+
+DECLARE monthlyFee = 5, freeMsgs = 100, 100to300Fee = 0.03, after300Fee = 0.02, taxRate = 0.14
+DECLARE areaCode, phoneNumber, sentMsgs
+DECLARE preTax, totalBill
+
+WHILE (TRUE) // this makes endless loop until the sentinel value of -1 is typed.
+	PRINT "INPUT your area code (3 digits) or type -1 to exit: "
+	INPUT areaCode
+	IF areaCode = -1 THEN
+		printInfo()
+		BREAK; // exiting the endless while loop after printing collected info.
+	ENDIF
+
+	PRINT "INPUT your phone number (7 digits) or type -1 to exit: "
+	INPUT phoneNumber
+	IF phoneNumber = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+
+	PRINT "INPUT your total number of text messages sent or type -1 to exit: "
+	INPUT sentMsgs
+	IF sentMsgs = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+ENDWHILE
+
+printInfo() {
+	IF sentMsgs > 100 THEN
+		PRINT "Your area code: " + areaCode
+		PRINT "Your phone number: " + phoneNumber
+		PRINT "Your total number of text messages sent: " + sentMsgs
+
+		IF sentMsgs > 300 THEN
+			preTax = (sentMsgs - 300) * after300Fee + 200 * 100to300Fee + monthlyFee
+
+		ELSE IF sentMsgs > 100 AND sentMsgs <= 300 THEN
+			preTax = (sentMsgs - 100) * 100to300Fee + monthlyFee
+		ENDIF
+
+		ELSE
+			preTax = monthlyFee
+		ENDIF
+
+		totalBill = preTax + (preTax * taxRate)
+		PRINT "Your pre tax amount: $" + preTax
+		PRINT "Your total bill: $" + totalBill
+
+	ELSE
+		PRINT "You haven't sent over 100 messages. Info won't be displayed.
+	ENDIF
+}
+
+END
+
+
+
+
+// Scenario 3: Collects text message data until a specified sentinel value is entered. Details will only be displayed for customers whose total bill, including taxes, exceeds $10.
+START
+
+DECLARE monthlyFee = 5, freeMsgs = 100, 100to300Fee = 0.03, after300Fee = 0.02, taxRate = 0.14
+DECLARE areaCode, phoneNumber, sentMsgs
+DECLARE preTax, totalBill
+
+WHILE (TRUE) // this makes endless loop until the sentinel value of -1 is typed.
+	PRINT "INPUT your area code (3 digits) or type -1 to exit: "
+	INPUT areaCode
+	IF areaCode = -1 THEN
+		printInfo()
+		BREAK; // exiting the endless while loop after printing collected info.
+	ENDIF
+
+	PRINT "INPUT your phone number (7 digits) or type -1 to exit: "
+	INPUT phoneNumber
+	IF phoneNumber = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+
+	PRINT "INPUT your total number of text messages sent or type -1 to exit: "
+	INPUT sentMsgs
+	IF sentMsgs = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+ENDWHILE
+
+printInfo() {
+// Details will only be displayed for customers whose total bill, including taxes, exceeds $10.
+	IF sentMsgs > 300 THEN
+		preTax = (sentMsgs - 300) * after300Fee + 200 * 100to300Fee + monthlyFee
+
+	ELSE IF sentMsgs > 100 AND sentMsgs <= 300 THEN
+		preTax = (sentMsgs - 100) * 100to300Fee + monthlyFee
+
+	ELSE
+		preTax = monthlyFee
+	ENDIF
+
+	totalBill = preTax + (preTax * taxRate)
+
+	IF totalBill > 10 THEN
+		PRINT "Your area code: " + areaCode
+		PRINT "Your phone number: " + phoneNumber
+		PRINT "Your total number of text messages sent: " + sentMsgs
+		PRINT "Your pre tax amount: $" + preTax
+		PRINT "Your total bill: $" + totalBill
+
+	ELSE
+		PRINT "Your total bill, including taxes, does not exceed $10. Info won't be displayed.
+	ENDIF
+}
+
+END
+
+
+
+
+
+
+// Scenario 4: Prompts the user to enter a three-digit area code to view bills from that specific area. The program will collect text message data until a specified sentinel value is entered, displaying only messages sent from the designated area code.
+START
+
+DECLARE monthlyFee = 5, freeMsgs = 100, 100to300Fee = 0.03, after300Fee = 0.02, taxRate = 0.14
+DECLARE areaCode, phoneNumber, sentMsgs,targetAreaCode
+DECLARE preTax, totalBill
+
+PRINT "INPUT your target area code (3 digits): "
+INPUT targetAreaCode
+
+
+WHILE (TRUE) // this makes endless loop until the sentinel value of -1 is typed.
+	PRINT "INPUT your area code (3 digits) or type -1 to exit: "
+	INPUT areaCode
+	IF areaCode = -1 THEN
+		printInfo()
+		BREAK; // exiting the endless while loop after printing collected info.
+	ENDIF
+
+	PRINT "INPUT your phone number (7 digits) or type -1 to exit: "
+	INPUT phoneNumber
+	IF phoneNumber = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+
+	PRINT "INPUT your total number of text messages sent or type -1 to exit: "
+	INPUT sentMsgs
+	IF sentMsgs = -1 THEN
+		printInfo()
+		BREAK;
+	ENDIF
+
+	IF area_code != target_area_code THEN
+		PRINT "The area code does not match with the target one. Please input again."
+		CONTINUE
+	ENDIF
+ENDWHILE
+
+printInfo() {
+	IF sentMsgs > 300 THEN
+		preTax = (sentMsgs - 300) * after300Fee + 200 * 100to300Fee + monthlyFee
+
+	ELSE IF sentMsgs > 100 AND sentMsgs <= 300 THEN
+		preTax = (sentMsgs - 100) * 100to300Fee + monthlyFee
+
+	ELSE
+		preTax = monthlyFee
+	ENDIF
+
+	totalBill = preTax + (preTax * taxRate)
+
+	PRINT "Your area code: " + areaCode
+	PRINT "Your phone number: " + phoneNumber
+	PRINT "Your total number of text messages sent: " + sentMsgs
+	PRINT "Your pre tax amount: $" + preTax
+	PRINT "Your total bill: $" + totalBill
+}
+
+END
