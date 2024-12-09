@@ -1,0 +1,50 @@
+START
+
+// Declare files
+InputFile geraldineFile = "Geraldines Businesses.csv"
+InputFile geraldFile = "Geralds Businesses.csv"
+OutputFile unifiedFile = "UnifiedCustomerRecords.csv"
+
+// Open files
+OPEN geraldineFile FOR READING
+OPEN geraldFile FOR READING
+OPEN unifiedFile FOR WRITING
+
+// Read the first records from each file
+READ geraldineRecord FROM geraldineFile
+READ geraldRecord FROM geraldFile
+
+// Merge the files
+WHILE NOT EOF(geraldineFile) OR NOT EOF(geraldFile)
+    IF geraldineRecord.CustomerNumber < geraldRecord.CustomerNumber THEN
+        WRITE geraldineRecord TO unifiedFile
+        READ geraldineRecord FROM geraldineFile
+
+    ELSE IF geraldineRecord.CustomerNumber > geraldRecord.CustomerNumber THEN
+        WRITE geraldRecord TO unifiedFile
+        READ geraldRecord FROM geraldFile
+
+    ELSE // Duplicate Customer Numbers
+        WRITE geraldineRecord TO unifiedFile // Write one of the duplicates
+        READ geraldineRecord FROM geraldineFile
+        READ geraldRecord FROM geraldFile
+    ENDIF
+ENDWHILE
+
+// Handle remaining records in either file
+WHILE NOT EOF(geraldineFile)
+    WRITE geraldineRecord TO unifiedFile
+    READ geraldineRecord FROM geraldineFile
+ENDWHILE
+
+WHILE NOT EOF(geraldFile)
+    WRITE geraldRecord TO unifiedFile
+    READ geraldRecord FROM geraldFile
+ENDWHILE
+
+// Close files
+CLOSE geraldineFile
+CLOSE geraldFile
+CLOSE unifiedFile
+
+STOP
