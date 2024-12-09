@@ -4,5 +4,5 @@ def greaterThan(x, y):
 
 a = 10
 b = 6
-result = greaterThan(a, b)
-print("The statement", str(a), "is greater than", str(b), "is", str(result))
+result = str(greaterThan(a, b)).lower()
+print("The statement", str(a), "is greater than", str(b), "is", result)
